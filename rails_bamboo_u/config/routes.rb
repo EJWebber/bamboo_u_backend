@@ -1,0 +1,10 @@
+Rails.application.routes.draw do
+  resources :user_db_goals
+  resources :user_wb_goals
+  resources :wb_goals
+  resources :user_dm_goals
+  resources :user_wm_goals
+  resources :wm_goals
+  resources :users
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+end

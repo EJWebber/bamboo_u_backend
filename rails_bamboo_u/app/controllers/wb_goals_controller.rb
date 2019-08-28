@@ -1,0 +1,2 @@
+class WbGoalsController < ApplicationController
+end

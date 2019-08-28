@@ -1,0 +1,2 @@
+class UserDmGoalsController < ApplicationController
+end
