@@ -1,2 +1,0 @@
-class UserWmGoalsController < ApplicationController
-end
