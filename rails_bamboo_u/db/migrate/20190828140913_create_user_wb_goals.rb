@@ -4,6 +4,7 @@ class CreateUserWbGoals < ActiveRecord::Migration[5.2]
       t.references :user, foreign_key: true
       t.references :wb_goal, foreign_key: true
       t.boolean :complete
+      t.integer :time
 
       t.timestamps
     end

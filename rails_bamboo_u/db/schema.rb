@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2019_08_28_140950) do
     t.bigint "user_id"
     t.bigint "wb_goal_id"
     t.boolean "complete"
+    t.integer "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_user_wb_goals_on_user_id"
@@ -46,6 +47,7 @@ ActiveRecord::Schema.define(version: 2019_08_28_140950) do
     t.bigint "user_id"
     t.bigint "wm_goal_id"
     t.boolean "complete"
+    t.integer "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_user_wm_goals_on_user_id"
@@ -61,14 +63,12 @@ ActiveRecord::Schema.define(version: 2019_08_28_140950) do
 
   create_table "wb_goals", force: :cascade do |t|
     t.string "activity"
-    t.integer "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "wm_goals", force: :cascade do |t|
     t.string "activity"
-    t.integer "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
