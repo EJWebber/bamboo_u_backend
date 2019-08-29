@@ -1,28 +1,44 @@
 import React from 'react';
 import './App.css';
+import API from './adapters/API'
+import SignIn from './components/SignIn'
+import { Button } from "semantic-ui-react"
 
 class App extends React.Component {
   state={
-    users: []
+    user: null
   }
 
-  fetchUsers = () => {
-    return fetch("http://localhost:3000/api/v1/wm_goals")
-    .then(resp => resp.json())
-    .then(users => console.log(users.data))
+  fetchUser = (name, password) => {
+   API.fetchUser().then(users => 
+    this.setState({user: users.data.filter(u => u.attributes.name === name)[0].attributes})
+   )
   }
 
-  // componentDidMount(){
-  //   fetchUsers()
-  // }
+  handleSignUp = (newName, newPassword) => {
+    API.postUser(
+      {name: newName, password: newPassword}
+      ).then(u => this.setState(
+        {user: u.user.data.attributes}
+        )
+        )
+  }
+
+  logOut = () => {
+    this.setState({
+      user: null
+    })
+  }
 
   render(){
   return (
     <div className="App">
       <header className="App-header">
-        
-        <button onClick={this.fetchUsers}>Fetch</button>
-  
+       {!this.state.user?
+       <SignIn fetchUser={this.fetchUser} handleSignUp={this.handleSignUp}/>
+        : 
+       <Button onClick={this.logOut}>Log Out</Button>
+       }
       </header>
     </div>
   );

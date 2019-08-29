@@ -12,6 +12,11 @@ class Api::V1::UsersController < ApplicationController
         end
     end
 
+    def show
+
+        render( {json: Api::V1::UserSerializer.new(User.find(params[:id])) } )
+    end
+
     private
     def user_params
         params.require(:user).permit(:name, :password)
