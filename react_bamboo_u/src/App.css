@@ -31,3 +31,14 @@
     transform: rotate(360deg);
   }
 }
+
+/* --------------------------- */
+#logout{
+  position: absolute;
+  left: 20px;
+  top: 20px;
+}
+#title{
+    font-family: "DK Black Bamboo";
+
+}

@@ -6,7 +6,8 @@ class SignUp extends React.Component{
         newName: "",
         newPassword: "",
         name: "",
-        password: ""
+        password: "",
+        menu: true
     }
 
     handleChange = e => {
@@ -15,10 +16,32 @@ class SignUp extends React.Component{
         });
       };
 
+      loginToggle = () => {
+        this.setState({menu: true})
+      }
+      signupToggle = () => {
+        this.setState({menu: false})
+      }
+
     render(){
         return(
         <div>
-             <Form onSubmit={() => this.props.fetchUser(this.state.name, this.state.password)} v>
+          <h1 className="ui center aligned header" id="title">Bamboo-U</h1>
+          
+          <div>{this.props.error.error ? this.props.error.error : "User not found"}</div>
+          
+          <br />
+
+          <div className="ui buttons">
+            <button className="ui positive button" onClick={this.loginToggle}>Login</button>
+          <div className="or"></div>
+            <button className="ui positive button" onClick={this.signupToggle}>Sign Up</button>
+          </div>
+
+          <br />
+
+           {this.state.menu?  
+           <Form onSubmit={() => this.props.fetchUser(this.state.name.toLowerCase(), this.state.password)} v>
           <Form.Field>
             <label>Name:</label>
             <input
@@ -39,12 +62,12 @@ class SignUp extends React.Component{
               name="password"
             />
           </Form.Field>
-          <Button type="submit" fluid>Login</Button>
+          <Button type="submit" fluid><i className="user icon"></i> Login</Button>
         </Form>
 
-        <div>OR</div>
+        :
         
-        <Form onSubmit={() => this.props.handleSignUp(this.state.newName, this.state.newPassword)} v>
+        <Form onSubmit={() => this.props.handleSignUp(this.state.newName.toLowerCase(), this.state.newPassword)} v>
           <Form.Field>
             <label>Name:</label>
             <input
@@ -65,9 +88,19 @@ class SignUp extends React.Component{
               name="newPassword"
             />
           </Form.Field>
-          <Button type="submit" fluid>Sign Up</Button>
+          <Form.Field>
+            <label> Confirm Password:</label>
+            <input
+              type="password"
+              placeholder="password"
+              value={this.state.newPassword}
+              onChange={this.handleChange}
+              name="newPassword"
+            />
+          </Form.Field>
+          <Button type="submit" fluid><i className="user plus icon"></i> Sign Up</Button>
         </Form>
-
+           }
         </div>
         )}
 }

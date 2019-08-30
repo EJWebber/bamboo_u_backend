@@ -1,6 +1,8 @@
 const baseURL = "http://localhost:3000"
 const versionURL = `${baseURL}/api/v1`
 const usersURL = `${versionURL}/users`
+const wbgURL = `${versionURL}/wb_goals`
+const wmgURL = `${versionURL}/wm_goals`
 
 const fetchUser = () => {
     return fetch(usersURL)
@@ -16,9 +18,19 @@ const postUser = user => {
 .then(resp => resp.json())
 }
 
+const fetchAllWBGs = () => {
+    return fetch(wbgURL)
+    .then(resp => resp.json())
+}
+const fetchAllWMGs = () => {
+    return fetch(wmgURL)
+    .then(resp => resp.json())
+}
 
 
 export default {
     fetchUser,
-    postUser
+    postUser,
+    fetchAllWBGs,
+    fetchAllWMGs
 }
