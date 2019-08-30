@@ -1,11 +1,11 @@
 class Api::V1::WbGoalsController < ApplicationController
     
     def index
-        render( { json: Api::V1::WbGoalSerializer.new(WbGoal.all) } )
+        render json: WbGoal.all, each_serializer: WbGoalSerializer
     end
 
-    def show
-        render( { json: Api::V1::WbGoalSerializer.new(WbGoal.find(params[:id])) } )
-    end
+    # def show
+    #     render( { json: Api::V1::WbGoalSerializer.new(WbGoal.find(params[:id])) } )
+    # end
 
 end

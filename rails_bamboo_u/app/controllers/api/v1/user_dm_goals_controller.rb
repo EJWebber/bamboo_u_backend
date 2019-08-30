@@ -1,7 +1,7 @@
 class Api::V1::UserDmGoalsController < ApplicationController
 
     def index
-        render( { json: Api::V1::UserDmGoalSerializer.new(UserDmGoal.all) } )
+        render json: UserDmGoal.all, each_serializer: UserDmGoalSerializer
     end
 
 end

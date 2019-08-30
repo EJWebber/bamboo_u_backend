@@ -1,7 +1,7 @@
 class Api::V1::UserWmGoalsController < ApplicationController
 
     def index
-        render( { json: Api::V1::UserWmGoalSerializer.new(UserWmGoal.all) } )
+        render json: UserWmGoal.all, each_serializer: UserWmGoalSerializer
     end
 
 end

@@ -1,4 +1,3 @@
-class Api::V1::UserDmGoalSerializer
-  include FastJsonapi::ObjectSerializer
+class Api::V1::UserDmGoalSerializer < ActiveModel::Serializer
   attributes :id, :user_wm_goal_id, :complete
 end
