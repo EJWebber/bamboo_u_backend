@@ -3,8 +3,8 @@ import './App.css';
 import API from './adapters/API'
 import SignIn from './components/SignIn'
 import WMGoalContainer from './components/WMGoalContainer'
-import CreateWBGoal from './components/CreateWBGoal'
-import { Button } from "semantic-ui-react"
+import WBGoalContainer from './components/WBGoalContainer'
+import { Button, Grid, Column, Divider, Segment } from "semantic-ui-react"
 
 class App extends React.Component {
   state={
@@ -85,15 +85,16 @@ componentDidMount(){
         : 
         <div>
        <Button id="logout" onClick={this.logOut}>Log Out</Button>
-       <Button.Group>
-        <Button >Body</Button>
-        <Button onClick={this.toggle}>Home</Button>
-        <Button >Mind</Button>
+       <Button.Group id="navbar">
+        <Button onClick={this.toggle}>Body</Button>
+        <Button onClick={this.toggle}>Mind</Button>
        </Button.Group>
-       {this.state.toggle ? 
+
+      {this.state.toggle ?
        <WMGoalContainer WMGs={this.state.WMGs} user={this.state.user} addWMGoal={this.addWMGoal}/>
         :
-       <CreateWBGoal WBGs={this.state.WBGs} user={this.state.user}/>}
+       <WBGoalContainer WBGs={this.state.WBGs} user={this.state.user}/>
+       }
        </div>
        }
       </header>

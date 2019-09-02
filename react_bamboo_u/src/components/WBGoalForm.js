@@ -2,12 +2,12 @@ import React from "react"
 import { Dropdown, Input, Label, Button } from 'semantic-ui-react'
 import API from "../adapters/API"
 
-class WMGoalForm extends React.Component {
+class WBGoalForm extends React.Component {
 
     state = {
         activity: null,
         
-        times: null,
+        time: null,
         toggleWarning: false,
         dropdownOptions: []
     }
@@ -19,32 +19,32 @@ class WMGoalForm extends React.Component {
     dropdownChange = e => {
         // console.log(this.props.WMGs.filter(goal => goal.activity === e.target.innerText)[0].id)
         this.setState({
-            activity: this.props.WMGs.filter(goal => goal.activity === e.target.innerText)[0] ?
-                this.props.WMGs.filter(goal => goal.activity === e.target.innerText)[0].id
-                : this.props.WMGs[0].id
+            activity: this.props.WBGs.filter(goal => goal.activity === e.target.innerText)[0] ?
+                this.props.WBGs.filter(goal => goal.activity === e.target.innerText)[0].id
+                : this.props.WBGs[0].id
         })
     }
 
-    setTimes = e => {
+    setTime = e => {
         this.setState({
-            times: parseInt(e.target.value)
+            time: parseInt(e.target.value)
         })
     }
 
     handleSubmit = () => {
-        this.state.times && this.state.activity ? this.submitWeeklyGoal() : this.setState({ toggleWarning: true })
+        this.state.time && this.state.activity ? this.submitWeeklyGoal() : this.setState({ toggleWarning: true })
     }
 
     submitWeeklyGoal = () => {
         this.setState({ toggleWarning: false })
-        let goal = { user_id: this.props.user.id, wm_goal_id: this.state.activity, complete: false, number: this.state.times }
-        API.postUserWMG(goal).then(
-        this.props.addWMGoal)
+        let goal = { user_id: this.props.user.id, wb_goal_id: this.state.activity, complete: false, time: this.state.time }
+        API.postUserWBG(goal).then(
+        this.props.addWBGoal)
         this.props.showForm()
     }
 
     dropdownOptions = () => {
-        const dropdownOptions = this.props.WMGs.map(goal => {
+        const dropdownOptions = this.props.WBGs.map(goal => {
             return { key: goal.id, text: goal.activity, value: goal.id }
         })
         this.setState({ dropdownOptions })
@@ -58,7 +58,7 @@ class WMGoalForm extends React.Component {
 
 
         return (<div>
-            Create a new Weekly Mind Goal:
+            Create a new Weekly Body Goal:
             <br />
             <br />
             <Dropdown
@@ -69,9 +69,9 @@ class WMGoalForm extends React.Component {
                 onChange={e => this.dropdownChange(e)}
             />
             <br />
-            <Input labelPosition='right' type='text' placeholder='How many times?' >
-                <input onChange={e => this.setTimes(e)}></ input>
-                <Label>times</Label>
+            <Input labelPosition='right' type='text' placeholder='For how long?' >
+                <input onChange={e => this.setTime(e)}></ input>
+                <Label>minutes</Label>
             </Input>
             <br />
             {this.state.toggleWarning ? <div>Please complete both fields</div> : null}
@@ -87,4 +87,4 @@ class WMGoalForm extends React.Component {
     }
 }
 
-export default WMGoalForm
+export default WBGoalForm

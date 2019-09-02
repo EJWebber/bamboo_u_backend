@@ -13,6 +13,11 @@ class Api::V1::UserWmGoalsController < ApplicationController
         end
     end
 
+    def show
+        @goal=UserWmGoal.find params[:id]
+        render json: @goal, serializer: Api::V1::UserWmGoalSerializer
+    end
+
 
     private
     def user_wm_goals_params

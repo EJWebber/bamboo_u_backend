@@ -59,6 +59,7 @@ class WMGoalContainer extends React.Component {
     render() {
         // const filteredWMGs = this.props.WMGs.filter(wmg => wmg.id === goal.wm_goal_id)
         const timeFiltered = this.timeFilter()
+        
         return (
             <div>
                 

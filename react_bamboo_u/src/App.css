@@ -42,3 +42,9 @@
     font-family: "DK Black Bamboo";
 
 }
+
+#navbar{
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}

@@ -5,6 +5,8 @@ const wbgURL = `${versionURL}/wb_goals`
 const wmgURL = `${versionURL}/wm_goals`
 const userWBGURL = `${versionURL}/user_wb_goals`
 const userWMGURL = `${versionURL}/user_wm_goals`
+const userDBGURL = `${versionURL}/user_db_goals`
+const userDMGURL = `${versionURL}/user_dm_goals`
 
 
 const fetchUser = () => {
@@ -39,6 +41,11 @@ body: JSON.stringify(goal)
 .then(resp => resp.json())
 }
 
+const fetchUserWMG = id => {
+    return fetch(`${userWMGURL}/${id}`)
+    .then(resp => resp.json())
+}
+
 const postUserWBG = goal => {
     return fetch(userWBGURL,
         {method: "POST",
@@ -48,9 +55,23 @@ body: JSON.stringify(goal)
 .then(resp => resp.json())
 }
 
-// const fetchUserWMGs = () => {
-//     return fetch(userWMGURL).then(resp => resp.json())
-// }
+const postUserDMG = goal => {
+    return fetch(userDMGURL,
+        {method: "POST",
+    headers: {"Content-Type": "application/json"},
+body: JSON.stringify(goal)
+})
+.then(resp => resp.json())
+}
+
+const postUserDBG = goal => {
+    return fetch(userDBGURL,
+        {method: "POST",
+    headers: {"Content-Type": "application/json"},
+body: JSON.stringify(goal)
+})
+.then(resp => resp.json())
+}
 
 export default {
     fetchUser,
@@ -58,5 +79,8 @@ export default {
     fetchAllWBGs,
     fetchAllWMGs,
     postUserWMG,
-    postUserWBG
+    fetchUserWMG,
+    postUserWBG,
+    postUserDMG,
+    postUserDBG
 }
