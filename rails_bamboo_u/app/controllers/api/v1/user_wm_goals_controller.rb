@@ -7,7 +7,7 @@ class Api::V1::UserWmGoalsController < ApplicationController
     def create
         @goal = UserWmGoal.create(user_wm_goals_params)
         if @goal.valid?
-            render json: { user: Api::V1::UserWmGoalSerializer.new(@goal) }
+            render json: @goal, serializer: Api::V1::UserWmGoalSerializer
         else
             render json: { error: 'Sorry something went wrong' }
         end

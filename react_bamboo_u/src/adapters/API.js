@@ -6,6 +6,7 @@ const wmgURL = `${versionURL}/wm_goals`
 const userWBGURL = `${versionURL}/user_wb_goals`
 const userWMGURL = `${versionURL}/user_wm_goals`
 
+
 const fetchUser = () => {
     return fetch(usersURL)
 .then(resp => resp.json())
@@ -47,9 +48,9 @@ body: JSON.stringify(goal)
 .then(resp => resp.json())
 }
 
-const fetchUserWMGs = () => {
-    return fetch(userWMGURL).then(resp => resp.json())
-}
+// const fetchUserWMGs = () => {
+//     return fetch(userWMGURL).then(resp => resp.json())
+// }
 
 export default {
     fetchUser,
@@ -57,6 +58,5 @@ export default {
     fetchAllWBGs,
     fetchAllWMGs,
     postUserWMG,
-    postUserWBG,
-    fetchUserWMGs
+    postUserWBG
 }

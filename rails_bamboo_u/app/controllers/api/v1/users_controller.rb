@@ -6,16 +6,18 @@ class Api::V1::UsersController < ApplicationController
     def create
         @user = User.create(user_params)
         if @user.valid?
-            render json: { user: Api::V1::UserSerializer.new(@user) }
+            render json: @user, serializer: Api::V1::UserSerializer
         else
             render json: { error: 'Sorry this name is taken' }
         end
     end
 
-    # def show
+    def show
+        # render {json: Api::V1::UserSerializer.new(User.find(params[:id]))} 
+        user=User.find params[:id]
+        render json: user, include: '*.*.*' 
 
-    #     render( {json: Api::V1::UserSerializer.new(User.find(params[:id])) } )
-    # end
+    end
 
     private
     def user_params

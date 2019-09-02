@@ -3,16 +3,14 @@ import {Button} from "semantic-ui-react"
 
 
 class CreateDMGoal extends React.Component {
-    // state = {
-    //     allUserWMGs: []
-    // }
+    
    
     
     render(){
         
         return(
             <div>
-                <Button>Create Daily Mind Goal</Button>
+                <Button>Daily Goal +</Button>
             </div>
         )
     }
