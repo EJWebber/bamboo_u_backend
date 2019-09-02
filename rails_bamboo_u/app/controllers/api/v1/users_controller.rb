@@ -1,16 +1,16 @@
 class Api::V1::UsersController < ApplicationController
     def index
-        render json: User.all, each_serializer: UserSerializer
+        render json: User.all, each_serializer: Api::V1::UserSerializer
     end
 
-    # def create
-    #     @user = User.create(user_params)
-    #     if @user.valid?
-    #         render json: { user: Api::V1::UserSerializer.new(@user) }
-    #     else
-    #         render json: { error: 'Sorry this name is taken' }
-    #     end
-    # end
+    def create
+        @user = User.create(user_params)
+        if @user.valid?
+            render json: { user: Api::V1::UserSerializer.new(@user) }
+        else
+            render json: { error: 'Sorry this name is taken' }
+        end
+    end
 
     # def show
 

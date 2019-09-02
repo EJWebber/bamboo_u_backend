@@ -1,7 +1,7 @@
 class Api::V1::WmGoalsController < ApplicationController
     
     def index
-        render json: WmGoal.all, each_serializer: WmGoalSerializer
+        render json: WmGoal.all, each_serializer: Api::V1::WmGoalSerializer
     end
 
     # def show

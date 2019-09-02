@@ -31,7 +31,7 @@ class SignUp extends React.Component{
           <div>{this.props.error.error ? this.props.error.error : "User not found"}</div>
           
           <br />
-
+          
           <div className="ui buttons">
             <button className="ui positive button" onClick={this.loginToggle}>Login</button>
           <div className="or"></div>
