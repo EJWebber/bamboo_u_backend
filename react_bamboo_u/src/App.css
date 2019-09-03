@@ -77,5 +77,6 @@ body {
 
 .form{
   width: 100%;
-  position: inherit;
+  
+  position: relative;
 }
