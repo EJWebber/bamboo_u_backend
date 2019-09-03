@@ -57,7 +57,7 @@ class WMGoalForm extends React.Component {
     render() {
 
 
-        return (<div>
+        return (<div className="form">
             Create a new Weekly Mind Goal:
             <br />
             <br />

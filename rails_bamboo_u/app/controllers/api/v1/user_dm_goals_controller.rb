@@ -12,6 +12,19 @@ class Api::V1::UserDmGoalsController < ApplicationController
             render json: { error: 'Sorry something went wrong' }
         end
     end
+    def show
+        @goal=UserDmGoal.find params[:id]
+        render json: @goal, serializer: Api::V1::UserDmGoalSerializer
+    end
+
+    def update
+        @goal = UserDmGoal.find params[:id]
+        if @goal.update(complete: params[:complete])
+            render json: @goal, serializer: Api::V1::UserDmGoalSerializer
+        else
+            render json: { error: 'Sorry something went wrong' }
+        end
+    end
 
 
     private

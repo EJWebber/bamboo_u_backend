@@ -13,7 +13,19 @@ class Api::V1::UserDbGoalsController < ApplicationController
         end
     end
 
-    
+    def show
+        @goal=UserDbGoal.find params[:id]
+        render json: @goal, serializer: Api::V1::UserDbGoalSerializer
+    end
+
+    def update
+        @goal = UserDbGoal.find params[:id]
+        if @goal.update(complete: params[:complete])
+            render json: @goal, serializer: Api::V1::UserDbGoalSerializer
+        else
+            render json: { error: 'Sorry something went wrong' }
+        end
+    end
 
 
     private

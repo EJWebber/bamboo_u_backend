@@ -57,7 +57,7 @@ class WBGoalForm extends React.Component {
     render() {
 
 
-        return (<div>
+        return (<div className="form">
             Create a new Weekly Body Goal:
             <br />
             <br />

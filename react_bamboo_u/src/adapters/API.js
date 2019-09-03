@@ -78,6 +78,26 @@ body: JSON.stringify(goal)
 .then(resp => resp.json())
 }
 
+const updateUserDMG = goal => {
+    const newGoal = {complete: true}
+    return fetch(`${userDMGURL}/${goal.id}`,
+    {method: "PATCH",
+headers: {"Content-Type": "application/json"},
+body: JSON.stringify(newGoal)
+})
+.then(resp => resp.json())
+}
+
+const updateUserDBG = goal => {
+   const newGoal = {complete: true}
+    return fetch(`${userDBGURL}/${goal.id}`,
+    {method: "PATCH",
+headers: {"Content-Type": "application/json"},
+body: JSON.stringify(newGoal)
+})
+.then(resp => resp.json(newGoal))
+}
+
 export default {
     fetchUser,
     postUser,
@@ -92,5 +112,8 @@ export default {
     fetchUserWBG,
     
     postUserDMG,
-    postUserDBG
+    postUserDBG,
+
+    updateUserDMG,
+    updateUserDBG
 }

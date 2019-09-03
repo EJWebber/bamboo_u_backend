@@ -82,6 +82,8 @@ componentDidMount(){
       this.setState({ user:  {...this.state.user, user_dm_goals:[...this.state.user.user_dm_goals, goal] }})
     }
 
+
+
     dmTimeFilter = () => {
       const a = moment();
       return this.state.user.user_dm_goals.filter(goal => 
@@ -113,7 +115,7 @@ componentDidMount(){
        </Button.Group>
 
         
-        <Grid divided='vertically'>
+        <Grid divided='vertically' className="dailygoals">
     <Grid.Row columns={2}>
       <Grid.Column>
       Daily Body Goal: {this.dbTimeFilter().map(dbg => <DBGoal dbg={dbg} WBGs={this.state.WBGs} user={this.state.user}/>)}
@@ -125,9 +127,9 @@ componentDidMount(){
       </Grid>
       
       {this.state.toggle ?
-       <WMGoalContainer WMGs={this.state.WMGs} user={this.state.user} addWMGoal={this.addWMGoal} addDMGoal={this.addDMGoal}/>
+       <WMGoalContainer WMGs={this.state.WMGs} user={this.state.user} addWMGoal={this.addWMGoal} addDMGoal={this.addDMGoal} />
         :
-       <WBGoalContainer WBGs={this.state.WBGs} user={this.state.user} addWBGoal={this.addWBGoal} addDBGoal={this.addDBGoal}/>
+       <WBGoalContainer WBGs={this.state.WBGs} user={this.state.user} addWBGoal={this.addWBGoal} addDBGoal={this.addDBGoal} />
        }
        </div>
        }

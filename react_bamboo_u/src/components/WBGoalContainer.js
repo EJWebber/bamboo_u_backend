@@ -72,8 +72,8 @@ state={
         const timeFiltered = this.timeFilter()
 
         return(
-            <div>
-                <h1>Body</h1>
+            <div className="container">
+                <h1>Weekly Goals</h1>
                {this.state.formToggle ? 
                 <WBGoalForm user={this.props.user} WBGs={this.props.WBGs} addWBGoal={this.props.addWBGoal} showForm={this.showForm}/> 
                 :

@@ -11,11 +11,20 @@ class DMGoal extends React.Component {
     filterForWMG = () => {
         return this.props.WMGs.filter(wmgoal => wmgoal.id === this.filterForUWMG().wm_goal_id)[0]
     }
+
+    handleClick = () => {
+        API.updateUserDMG(this.props.dmg).then(console.log)
+    }
+
     
     render () {
 return (
     <div>
-        <Button circular icon='check' />
+        {this.props.dmg.complete ? 
+        <Button circular icon='check' color='green'/> 
+        :
+        <Button circular icon='check' onClick={this.handleClick}/>
+        }
     {this.filterForWMG().activity} today
     </div>
 )
