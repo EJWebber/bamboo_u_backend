@@ -55,6 +55,11 @@ body: JSON.stringify(goal)
 .then(resp => resp.json())
 }
 
+const fetchUserWBG = id => {
+    return fetch(`${userWBGURL}/${id}`)
+    .then(resp => resp.json())
+}
+
 const postUserDMG = goal => {
     return fetch(userDMGURL,
         {method: "POST",
@@ -76,11 +81,16 @@ body: JSON.stringify(goal)
 export default {
     fetchUser,
     postUser,
+
     fetchAllWBGs,
     fetchAllWMGs,
+
     postUserWMG,
     fetchUserWMG,
+
     postUserWBG,
+    fetchUserWBG,
+    
     postUserDMG,
     postUserDBG
 }

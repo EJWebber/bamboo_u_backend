@@ -1,6 +1,6 @@
 import React from "react"
 import { Button } from 'semantic-ui-react'
-import WBGoalForm from './WBGoalForm'
+import WBGoalForm from "../components/WBGoalForm"
 import WBGoal from './WBGoal'
 const moment = require('moment')
 
@@ -42,13 +42,16 @@ state={
     WBList(timeFiltered) {
         return (
             <>
+            
             <Button onClick={this.showForm}>New Weekly Goal</Button>
+            <br />
+            <br />
                 {
-                    timeFiltered.map(goal => <div>
+                    timeFiltered.map(goal => 
 
-                        <WBGoal goal={goal} WBGs={this.props.WBGs} user={this.props.user}/>
+                        <WBGoal goal={goal} WBGs={this.props.WBGs} user={this.props.user} key={goal.id} addDBGoal={this.props.addDBGoal}/>
 
-                    </div>
+                  
                     )}
             </>
         )
@@ -70,6 +73,7 @@ state={
 
         return(
             <div>
+                <h1>Body</h1>
                {this.state.formToggle ? 
                 <WBGoalForm user={this.props.user} WBGs={this.props.WBGs} addWBGoal={this.props.addWBGoal} showForm={this.showForm}/> 
                 :

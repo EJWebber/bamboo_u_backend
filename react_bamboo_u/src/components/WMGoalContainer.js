@@ -33,11 +33,14 @@ class WMGoalContainer extends React.Component {
     WMList(timeFiltered) {
         return (
             <>
+            
             <Button onClick={this.showForm}>New Weekly Goal</Button>
+            <br />
+            <br />
                 {
                     timeFiltered.map(goal => <div>
 
-                        <WMGoal goal={goal} WMGs={this.props.WMGs} user={this.props.user}/>
+                        <WMGoal goal={goal} WMGs={this.props.WMGs} user={this.props.user} key={goal.id} addDMGoal={this.props.addDMGoal}/>
 
                     </div>
                     )}
@@ -63,7 +66,7 @@ class WMGoalContainer extends React.Component {
         return (
             <div>
                 
-
+                <h1>Mind</h1>
                 {this.state.formToggle ? 
                 <WMGoalForm user={this.props.user} WMGs={this.props.WMGs} addWMGoal={this.props.addWMGoal} showForm={this.showForm}/> 
                 :

@@ -26,16 +26,17 @@
 # WmGoal.create(activity: "Reach out to family")
 # WmGoal.create(activity: "Give someone a hug")
 # WmGoal.create(activity: "Complete a puzzle/mind game")
+UserWbGoal.delete_all
+WbGoal.delete_all
+WbGoal.create(activity: "Run")
+WbGoal.create(activity: "Swim")
+WbGoal.create(activity: "Cycle")
+WbGoal.create(activity: "Hike")
+WbGoal.create(activity: "Spin class")
+WbGoal.create(activity: "Yoga")
+WbGoal.create(activity: "Lift weights")
+WbGoal.create(activity: "HIIT")
 
-# WbGoal.create(activity: "Run")
-# WbGoal.create(activity: "Swim")
-# WbGoal.create(activity: "Cycle")
-# WbGoal.create(activity: "Hike")
-# WbGoal.create(activity: "Spin class")
-# WbGoal.create(activity: "Yoga")
-# WbGoal.create(activity: "Lift weights")
-# WbGoal.create(activity: "HIIT")
-
-UserWmGoal.delete_all
+# UserWmGoal.delete_all
 
 puts("seeded")

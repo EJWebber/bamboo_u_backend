@@ -4,7 +4,10 @@ import API from './adapters/API'
 import SignIn from './components/SignIn'
 import WMGoalContainer from './components/WMGoalContainer'
 import WBGoalContainer from './components/WBGoalContainer'
-import { Button, Grid, Column, Divider, Segment } from "semantic-ui-react"
+import { Button, Grid } from "semantic-ui-react"
+import DMGoal from "./components/DMGoal"
+import DBGoal from "./components/DBGoal"
+const moment = require('moment')
 
 class App extends React.Component {
   state={
@@ -64,18 +67,37 @@ componentDidMount(){
   }
 
   addWMGoal = goal => {
-    // const date = new Date()
-    // const currentDate = `${date.getFullYear()}-${date.getMonth() < 10? `0${date.getMonth()+1}`: date.getMonth()+1}-${date.getDate() < 10 ? `0${date.getDate()}`: date.getDate()}`
-    // T${date.getHours() < 10 ? `0${date.getHours()}`: date.getHours()}:${date.getMinutes() < 10 ? `0${date.getMinutes()}`: date.getMinutes()}:00.000Z
-      // const goalDate = {...goal, created_at: currentDate}
         this.setState({ user:  {...this.state.user, user_wm_goals:[...this.state.user.user_wm_goals, goal] }})
-        // this.setState({ 
-        //   user: [...this.state.user, {user_wm_goals:[...this.state.user.user_wm_goals, goal]} ] 
-        // })
-
     }
 
+    addWBGoal = goal => {
+      this.setState({ user:  {...this.state.user, user_wb_goals:[...this.state.user.user_wb_goals, goal] }})
+    }
+
+    addDBGoal = goal => {
+      this.setState({ user:  {...this.state.user, user_db_goals:[...this.state.user.user_db_goals, goal] }})
+    }
+
+    addDMGoal = goal => {
+      this.setState({ user:  {...this.state.user, user_dm_goals:[...this.state.user.user_dm_goals, goal] }})
+    }
+
+    dmTimeFilter = () => {
+      const a = moment();
+      return this.state.user.user_dm_goals.filter(goal => 
+          a.diff(new Date(goal.created_at), 'days') <= 1 
+      )
+  }
+
+  dbTimeFilter = () => {
+    const a = moment();
+    return this.state.user.user_db_goals.filter(goal => 
+        a.diff(new Date(goal.created_at), 'days') <= 1 
+    )
+}
+
   render(){
+    
   return (
     <div className="App">
       <header className="App-header">
@@ -90,10 +112,22 @@ componentDidMount(){
         <Button onClick={this.toggle}>Mind</Button>
        </Button.Group>
 
+        
+        <Grid divided='vertically'>
+    <Grid.Row columns={2}>
+      <Grid.Column>
+      Daily Body Goal: {this.dbTimeFilter().map(dbg => <DBGoal dbg={dbg} WBGs={this.state.WBGs} user={this.state.user}/>)}
+      </Grid.Column>
+      <Grid.Column>
+      Daily Mind Goal: {this.dmTimeFilter().map(dmg => <DMGoal dmg={dmg} WMGs={this.state.WMGs} user={this.state.user}/>)}
+      </Grid.Column>
+    </Grid.Row>
+      </Grid>
+      
       {this.state.toggle ?
-       <WMGoalContainer WMGs={this.state.WMGs} user={this.state.user} addWMGoal={this.addWMGoal}/>
+       <WMGoalContainer WMGs={this.state.WMGs} user={this.state.user} addWMGoal={this.addWMGoal} addDMGoal={this.addDMGoal}/>
         :
-       <WBGoalContainer WBGs={this.state.WBGs} user={this.state.user}/>
+       <WBGoalContainer WBGs={this.state.WBGs} user={this.state.user} addWBGoal={this.addWBGoal} addDBGoal={this.addDBGoal}/>
        }
        </div>
        }

@@ -1,6 +1,6 @@
 import React from "react"
 // import CreateDMGoal from "./CreateDMGoal"
-import {Button} from "semantic-ui-react"
+import {Button, Grid} from "semantic-ui-react"
 import API from "../adapters/API";
 
 class WMGoal extends React.Component {
@@ -19,7 +19,7 @@ class WMGoal extends React.Component {
 
     handleClick = () => {
         const dailyGoal = {user_wm_goal_id: this.props.goal.id, complete: false}
-        API.postUserDMG(dailyGoal).then(console.log)
+        API.postUserDMG(dailyGoal).then(this.props.addDMGoal)
     }
 
     render(){
@@ -29,13 +29,17 @@ class WMGoal extends React.Component {
         return(
             <div>
                 
-
-                {filteredWMGs.activity} {this.props.goal.number} times this week
-                
-                
-                <Button onClick={this.handleClick}>Get a daily goal</Button>
-                
-                
+                <Grid divided='vertically'>
+                <Grid.Row columns={2}>
+                    <Grid.Column>
+                        {filteredWMGs.activity} {this.props.goal.number} times this week
+                    </Grid.Column>
+                    <Grid.Column>
+                        <Button onClick={this.handleClick}>Get a daily goal</Button>
+                    </Grid.Column>
+                </Grid.Row>
+                </Grid>
+               <br />
             </div>
         )
     }
