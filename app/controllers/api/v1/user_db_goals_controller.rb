@@ -20,7 +20,7 @@ class Api::V1::UserDbGoalsController < ApplicationController
 
     def update
         @goal = UserDbGoal.find params[:id]
-        if @goal.update(complete: params[:complete])
+        if @goal.update(complete: params[:complete], time: params[:time])
             render json: @goal, serializer: Api::V1::UserDbGoalSerializer
         else
             render json: { error: 'Sorry something went wrong' }

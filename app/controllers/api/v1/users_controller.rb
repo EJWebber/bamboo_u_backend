@@ -15,7 +15,7 @@ class Api::V1::UsersController < ApplicationController
     def show
         # render {json: Api::V1::UserSerializer.new(User.find(params[:id]))} 
         user=User.find params[:id]
-        render json: user, include: '*.*.*' 
+        render json: user, serializer: Api::V1::UserSerializer
 
     end
 
