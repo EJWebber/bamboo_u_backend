@@ -18,6 +18,15 @@ class Api::V1::UserWmGoalsController < ApplicationController
         render json: @goal, serializer: Api::V1::UserWmGoalSerializer
     end
 
+    def update
+        @goal = UserWmGoal.find params[:id]
+        if @goal.update(complete: params[:complete])
+            render json: @goal, serializer: Api::V1::UserWmGoalSerializer
+        else
+            render json: {error: "Sorry something went wrong"}
+        end
+    end
+
 
     private
     def user_wm_goals_params
