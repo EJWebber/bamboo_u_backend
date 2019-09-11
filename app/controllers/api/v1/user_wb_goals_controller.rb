@@ -20,14 +20,19 @@ class Api::V1::UserWbGoalsController < ApplicationController
 
     def update
         @goal = UserWbGoal.find params[:id]
-        if @goal.update(complete: params[:complete], time: params[:time])
-            render json: @goal, serializer Api::V1::UserWbGoalSerializer
+        if @goal.update(complete: params[:complete])
+            render json: @goal, serializer: Api::V1::UserWbGoalSerializer
         else
             render json: {error: "Sorry something went wrong"}
         end
     end
 
-    
+    def destroy
+        @goal = UserWbGoal.find params[:id]
+        @goal.destroy
+    end
+
+
     private
     def user_wb_goals_params
         params.require(:user_wb_goal).permit(:user_id, :wb_goal_id, :complete, :time)

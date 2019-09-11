@@ -27,6 +27,11 @@ class Api::V1::UserWmGoalsController < ApplicationController
         end
     end
 
+    def destroy
+        @goal = UserWmGoal.find params[:id]
+        @goal.destroy
+    end
+
 
     private
     def user_wm_goals_params

@@ -26,6 +26,11 @@ class Api::V1::UserDmGoalsController < ApplicationController
         end
     end
 
+    def destroy
+        @goal = UserDmGoal.find params[:id]
+        @goal.destroy
+    end
+
 
     private
     def user_dm_goals_params
