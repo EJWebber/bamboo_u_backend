@@ -72,3 +72,4 @@ gem "active_model_serializers", "~> 0.10.10"
 
 gem "faker", "~> 2.1"
 gem 'pry'
+gem 'bundler', '2.0.1'
